@@ -1,3 +1,5 @@
+// Kotlin can import and use any exist java library
+import java.util.Arrays
 
 /*******************************************
  * Kotlin Tutorial Note
@@ -7,6 +9,17 @@
 
 fun main(args : Array<String>){
     println("Kotlin Tutorial")
+
+    //Kotlin print statment could print out multiple line at once within """ """
+    // trimIndent() could get ride of the empty space in the front
+    //print statement has similar functionability as JS
+
+    println("""
+        ----------------------------------------------------------------
+        - @Author: Runquan Ye
+        - @Date: August / 2019
+        ----------------------------------------------------------------
+    """.trimIndent())
 
     /*
      * Kotlin variable could declare without notice its type,
@@ -27,17 +40,6 @@ fun main(args : Array<String>){
     val nationality : String = "China"
     var num:Int = 10
     val pi : Double = 3.14
-
-    //Kotlin print statment could print out multiple line at once within """ """
-    // trimIndent() could get ride of the empty space in the front
-    //print statement has similar functionability as JS
-
-    println("""
-        ----------------------------------------------------------------
-        - @Author: $name
-        - @Date: August / 2019
-        ----------------------------------------------------------------
-    """.trimIndent())
 
 
     println("""
@@ -116,8 +118,10 @@ fun main(args : Array<String>){
 
     //the array with declear specific type could use as Python's list,
     //you can put any type of data in it.
-    var arr = arrayOf(1 ,2, 3.0, 'J', "Test")
-    println("Array1: $arr")
+    var arr = arrayOf(1 ,2, 3.0, 'J', 2, "Kyle", 3.0, 2, 4, "Test")
+    //after import java.util.Arrays
+    //we can use Arrays.toString(array) to print out the array elements just like in java
+    println("Array1: ${Arrays.toString(arr)}")
     println("Size: ${arr.size}")
     println("First Element: ${arr.first()}")
     println("Last Element: ${arr.last()}")
@@ -125,12 +129,63 @@ fun main(args : Array<String>){
     println("Is 'Test' in the Array1: ${"Test" in arr}")
 
     //subarry could create in this way array.copyOfRange(start, end+1)
-    var arr2 = arr.copyOfRange(2,4)
-    println("Array2: ")
+    var arr2 = arr.copyOfRange(1,5)
+    println("Array2: ${Arrays.toString(arr2)}")
     println("Size:${arr2.size}")
     println("First Element: ${arr2.first()}")
     println("Last Element: ${arr2.last()}")
+    println("Index of '3.0': ${arr2.indexOf(3.0)}")
 
+    //you can declare array with specific type, and it can only accept specific value
+    var arr3 : Array<Int> = arrayOf(1, 2, 3, 4, 5, 6)
+    println("Array3: ${Arrays.toString(arr3)}")
+
+    //or you can create specific type array in this way
+    var arr4 = intArrayOf(1, 2, 3, 4, 5, 6)
+    println("Array4: ${Arrays.toString(arr4)}")
+
+    var arr5 = doubleArrayOf(1.2, 3.6, 5.8, 7.2, 10.6)
+    println("Array5: ${Arrays.toString(arr5)}")
+
+
+    println("""
+        ----------------------------Collection----------------------------
+    """.trimIndent())
+    //easiest way to create an array of squares
+    var sqArray = Array(5, {x -> x * x})
+    println(sqArray[2])
+
+
+    println("""
+        ----------------------------Range----------------------------
+    """.trimIndent())
+    //Kotlin will create a range goes from start number go to end number
+    // val/var variable_name = start..end
+    val oneToTen = 1..10
+    println("Check 4 in oneToTen: ${4 in oneToTen}")
+
+    //you can also  create oneToTen range like this, start.rangeTo(end)
+    val oneToTen2 = 1.rangeTo(10)
+    println("Check 7 in oneToTen2: ${7 in oneToTen2}")
+
+    //there has a downTo method, start.downTo(end)
+    val hundredToOne = 100.downTo(1)
+    println("Check 89 in hundredToOne: ${89 in hundredToOne}")
+
+    //you can use step iin range
+    //create a range from 1 to 30, each step add 5
+    var stepToThirty = (0..30).step(5)
+    println("stepToThirty: ")
+    for(n in stepToThirty)
+        println(n)
+    println("Check 12 in stepToThirty: ${12 in stepToThirty}")
+    println("Check 10 in stepToThirty: ${10 in stepToThirty}")
+
+
+    // range works with letter to
+    val alpha = 'A'..'Z'
+    println("Check R in alpha: ${'R' in alpha}")
 }
+
 
 
