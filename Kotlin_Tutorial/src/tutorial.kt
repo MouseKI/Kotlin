@@ -290,6 +290,7 @@ fun main(args : Array<String>){
     nation("China")
 
     println("Return 2 values function(check is 5 even): ${return2Value(5)}")
+    println("Sum of range 1 to 5: ${sumOf(1,2,3,4,5)}")
 }
 
 
@@ -325,4 +326,16 @@ fun return2Value(input1:Int):Pair<Int, Boolean>{
         return Pair(input1, true)
     else
         return Pair(input1, false)
+}
+
+//Kotlin also allow you could sent a variable or element of the param into the function
+//so the method treate the para input as an array or list, user could input as much same type para as you need
+//when the method run the function will run through each of the element in the param list
+fun sumOf(vararg nums:Int):Int{
+    var sum = 0
+
+    //Kotlin has the forEach method too
+    nums.forEach { n -> sum += 0 }
+
+    return sum
 }

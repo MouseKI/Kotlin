@@ -14,8 +14,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/tutorial.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="291" column="49" selection-start-line="291" selection-start-column="49" selection-end-line="291" selection-end-column="49" />
+            <state>
+              <caret lean-forward="true" />
             </state>
           </provider>
         </entry>
@@ -122,12 +122,12 @@
       <workItem from="1565239483956" duration="956000" />
       <workItem from="1565303394019" duration="9602000" />
       <workItem from="1565414586395" duration="2604000" />
-      <workItem from="1565713052841" duration="5623000" />
+      <workItem from="1565713052841" duration="6369000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19575000" />
+    <option name="totallyTimeSpent" value="20321000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1455" height="935" extended-state="6" />
@@ -171,8 +171,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/tutorial.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="291" column="49" selection-start-line="291" selection-start-column="49" selection-end-line="291" selection-end-column="49" />
+        <state>
+          <caret lean-forward="true" />
         </state>
       </provider>
     </entry>
