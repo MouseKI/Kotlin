@@ -58,12 +58,11 @@ fun main(args : Array<String>){
 
 
     println("""
-        ----------------------------Logic----------------------------
+        ----------------------------Conditionals----------------------------
     """.trimIndent())
 
-
     /*
-     * Kotlin logics: ==, !=, >, >=, <, <= ,||, &&
+     * Kotlin Conditional Operators: ==, !=, >, >=, <, <= ,||, &&
      */
 
     //Kotlin Char type, value should surround by single quote mark
@@ -147,13 +146,22 @@ fun main(args : Array<String>){
     var arr5 = doubleArrayOf(1.2, 3.6, 5.8, 7.2, 10.6)
     println("Array5: ${Arrays.toString(arr5)}")
 
+    //reverse an array
+    var arr6 = arr3.reversed()
+    print("Array6(reversed of Array3): ")
+    for(i in arr6) {
+        print(i)
+        if(arr6.indexOf(i) != arr6.size - 1)
+            print(",")
+    }
+    println()
 
     println("""
         ----------------------------Collection----------------------------
     """.trimIndent())
     //easiest way to create an array of squares
     var sqArray = Array(5, {x -> x * x})
-    println(sqArray[2])
+    println("sqArray: " + Arrays.toString(sqArray))
 
 
     println("""
@@ -162,30 +170,159 @@ fun main(args : Array<String>){
     //Kotlin will create a range goes from start number go to end number
     // val/var variable_name = start..end
     val oneToTen = 1..10
+    print("oneToTen: ")
+    for(n in oneToTen){
+        print(n)
+        if(n != 10)
+            print(",")
+    }
+    println()
     println("Check 4 in oneToTen: ${4 in oneToTen}")
 
     //you can also  create oneToTen range like this, start.rangeTo(end)
     val oneToTen2 = 1.rangeTo(10)
+    print("oneToTen2: ")
+    for(n in oneToTen2){
+        print(n)
+        if(n != 10)
+            print(",")
+    }
+    println()
+
     println("Check 7 in oneToTen2: ${7 in oneToTen2}")
 
     //there has a downTo method, start.downTo(end)
     val hundredToOne = 100.downTo(1)
+    print("hundredToOne: ")
+    for(n in hundredToOne){
+        print(n)
+        if(n != 1)
+            print(",")
+    }
+    println()
+
     println("Check 89 in hundredToOne: ${89 in hundredToOne}")
 
     //you can use step iin range
     //create a range from 1 to 30, each step add 5
     var stepToThirty = (0..30).step(5)
-    println("stepToThirty: ")
-    for(n in stepToThirty)
-        println(n)
+    print("stepToThirty: ")
+    for(n in stepToThirty){
+        print(n)
+        if(n != 30)
+            print(",")
+    }
+    println()
     println("Check 12 in stepToThirty: ${12 in stepToThirty}")
     println("Check 10 in stepToThirty: ${10 in stepToThirty}")
 
 
     // range works with letter to
     val alpha = 'A'..'Z'
+    print("alpha: ")
+    for(n in alpha){
+        print(n)
+        if(n != 'Z')
+            print(",")
+    }
+    println()
+
     println("Check R in alpha: ${'R' in alpha}")
+
+
+    println("""
+        ----------------------------When----------------------------
+    """.trimIndent())
+    //Kotlin has a when condiction that kind like switch case in java, but it has some differents
+    val splitLine = 10
+    var even = arrayOf(0)
+    when(splitLine){
+        //the logicc here is simple
+        //when splitLine = 0 or 1, 2, 3 print out the line
+        0, 1, 2, 3 -> println("The splitLine is less than 4")
+
+        5 -> println("The splitLine is 5")
+
+        //you can use range, array in the when case operation
+        in 6..10 -> println("The splitLine is between 6 and 10")
+
+        in even -> println("The splitLine is even")
+
+        //the when case allow you to have a defult value, else
+        else -> println("The splitLine is greater then 10")
+    }
+    println()
+
+
+    println("""
+        ----------------------------For Loop----------------------------
+    """.trimIndent())
+    //Kotlin for loop has some similarities with python
+
+    for(n in 1..10)
+        print("" + n + " ")
+    println()
+
+
+    var array : Array<Int> = arrayOf(3, 6, 9, 12)
+    println("Multiple of 3:")
+    for(i in array.indices)
+        println("$i : ${array[i]}")
+
+    //or do it in this way
+    for((i, x) in array.withIndex()){
+        println("Index $i : \t Value: $x")
+    }
+
+    println()
+
+    println("""
+        ----------------------------Function----------------------------
+    """.trimIndent())
+    //in Kotlin ${} could run methods, if condictions, ranges, loop, and etc.
+    println("Check is 4 even: ${checkEven(4)}")
+    println("100 + 82 = ${add(100, 81)}")
+    println("NullInput + NullInput = ${add()}")
+    println(" 51 - 23 = ${subtract(52, 23)}")
+    println("Where are you from?")
+
+    //call a method just like this
+    nation("China")
+
+    println("Return 2 values function(check is 5 even): ${return2Value(5)}")
 }
 
 
+//Kotlin Function
+//declaring a function is similar with declaring a variable
+//fun funcction_name(Para or not) : return_type
+fun checkEven(input1:Int):Boolean{
+    if(input1 % 2 == 0)
+        return true
+    else
+        return false
+}
 
+//Here is an example of a single line function
+//kotlin allows you give the parameter a default value
+//if you dont provide input 1 or input 2 automatically consider as 0
+fun add(input1:Int = 0, input2:Int = 0):Int = input1 + input2
+
+//Kotlin allows you dont need the return type when you declaring a single line function
+fun subtract(input1: Int, input2: Int) = input1 - input2
+
+//if you dont want the function return anything, like the void type method in java.
+//In Kotlin the return type is Unit.
+fun nation(country:String):Unit{
+    println("You are from $country")
+}
+
+//Kotlin allows function return 2 values
+//fun funcction_name(Para or not) : Pair<return_type1, return_type2>
+fun return2Value(input1:Int):Pair<Int, Boolean>{
+    if(input1 % 2 == 0)
+        //the return should in this form Pair(returnType1, returnType2)
+        return Pair(input1, true)
+    else
+        return Pair(input1, false)
+}
