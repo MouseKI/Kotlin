@@ -14,8 +14,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/tutorial.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="357" selection-start-line="357" selection-end-line="357" />
+            <state relative-caret-position="361">
+              <caret line="458" column="1" lean-forward="true" selection-start-line="458" selection-start-column="1" selection-end-line="458" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -56,6 +56,11 @@
             <path>
               <item name="Kotlin_Tutorial" type="b2602c69:ProjectViewProjectNode" />
               <item name="Kotlin_Tutorial" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Kotlin_Tutorial" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Kotlin_Tutorial" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -122,12 +127,12 @@
       <workItem from="1565239483956" duration="956000" />
       <workItem from="1565303394019" duration="9602000" />
       <workItem from="1565414586395" duration="2604000" />
-      <workItem from="1565713052841" duration="10600000" />
+      <workItem from="1565713052841" duration="16235000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24552000" />
+    <option name="totallyTimeSpent" value="30187000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1455" height="935" extended-state="6" />
@@ -171,8 +176,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/tutorial.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="357" selection-start-line="357" selection-end-line="357" />
+        <state relative-caret-position="361">
+          <caret line="458" column="1" lean-forward="true" selection-start-line="458" selection-start-column="1" selection-end-line="458" selection-end-column="1" />
         </state>
       </provider>
     </entry>

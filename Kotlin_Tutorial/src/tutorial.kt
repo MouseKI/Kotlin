@@ -163,6 +163,62 @@ fun main(args : Array<String>){
     var sqArray = Array(5, {x -> x * x})
     println("sqArray: " + Arrays.toString(sqArray))
 
+    val list = 1..30
+    //'any' is to check is there has any match condition element in the list, array, range, collection, etc
+    println("List contains any even: ${list.any{n -> n % 2 == 0}}")
+    //Again, Kotlin allow if the function only require one parameter, you can use it to refer the parameter
+    println("All the list elements are even: ${list.all{it % 2 == 0}}")
+
+    //'filter'
+    var bigerThan20 = list.filter { it > 20 }
+    print("Filter(n > 20): ")
+    bigerThan20.forEach{print("" + it + if(it == 30) "" else ", ")}
+    println()
+
+    //'reduce'
+    //Accumulates value starting with the first element and applying operation from left to right
+    val sumBig20 = bigerThan20.reduce{x, sum -> x + sum}
+    println("Reducce_Sum of list(Bigger than 20): $sumBig20")
+
+    //'group'
+    /*Groups elements from the Grouping source by key and applies the reducing operation
+     *to the elements of each group sequentially starting from the second element of the group,
+     *passing the previously accumulated value and the current element as arguments, and stores the results in a new map.
+     *An initial value of accumulator is the first element of the group.
+     */
+    val animals = listOf("raccoon", "reindeer", "cow", "camel", "giraffe", "goat")
+    // grouping by first char and collect only max of contains vowels
+    val compareByVowelCount = compareBy { s: String -> s.count { it in "aeiou" } }
+    println("Vowel Count: $compareByVowelCount")
+    val maxVowels = animals.groupingBy { it.first() }.reduce { _, a, b -> maxOf(a, b, compareByVowelCount) }
+    println("max Vowels: $maxVowels")// {r=reindeer, c=camel, g=giraffe}
+
+    //'fold'
+    //Accumulates value starting with initial value and
+    //applying operation from left to right to current accumulator value and each element.
+    val sumBig20F = bigerThan20.fold(100){x, sum -> x + sum}
+    //this result should bigger than reduce's by 100, since fold start with initial of 100
+    println("Fold_Sum of list(Bigger than 20): $sumBig20F")
+
+    val fruits = listOf("cherry", "blueberry", "citrus", "apple", "apricot", "banana", "coconut")
+
+    val evenFruits = fruits.groupingBy { it.first() }
+        .fold({ key, _ -> key to mutableListOf<String>() },
+            { _, accumulator, element ->
+                accumulator.also { (_, list) -> if (element.length % 2 == 0) list.add(element) }
+            })
+
+    val sorted = evenFruits.values.sortedBy { it.first }
+    println(sorted) // [(a, []), (b, [banana]), (c, [cherry, citrus])]
+
+
+    //'map' performs a specific action on every element on the list, range, array, collection... and return a new list
+    val numList = 1..10
+    val multiply5 = numList.map{it * 5}
+    print("Map(multiply 5): ")
+    multiply5.forEach{print("$it" + if(it != 50) ", " else "")}
+    println()
+
 
     println("""
         ----------------------------Range----------------------------
@@ -212,7 +268,19 @@ fun main(args : Array<String>){
     println()
     println("Check 12 in stepToThirty: ${12 in stepToThirty}")
     println("Check 10 in stepToThirty: ${10 in stepToThirty}")
-
+    //Here write a method try to filter out all the even numbers in stepToThirty
+    //Kotlin has it term that allow f the fuction only has one paramer, you dont need to declare it
+    //same with stepToThirty.filter { n -> n % 2 == 0 }
+    var evenList = stepToThirty.filter { it % 2 == 0 }
+    println("Even Numbers in stepToThirty: ")
+    //evenList.forEach{n -> print(n)}
+    evenList.forEach{n -> print("" + n + if(n != 30) "," else "")}
+    println()
+    //or you could do it in this way
+    //evenList.forEach{print(it)}
+    evenList.forEach{print("" + it + if(it != 30) "," else "")}
+    println()
+    println()
 
     // range works with letter to
     val alpha = 'A'..'Z'
@@ -278,7 +346,7 @@ fun main(args : Array<String>){
     println("Check is 4 even: ${checkEven(4)}")
     println("100 + 82 = ${add(100, 81)}")
     println("NullInput + NullInput = ${add()}")
-    println(" 51 - 23 = ${subtract(52, 23)}")
+    println("52 - 23 = ${subtract(52, 23)}")
     println("Where are you from?")
 
     //call a method just like this
@@ -287,8 +355,17 @@ fun main(args : Array<String>){
     println("Return 2 values function(check is 5 even): ${return2Value(5)}")
     println("Sum of range 1 to 5: ${sumOf(1,2,3,4,5)}")
 
+    val multipl5 = multiply(5)
+    println("Function reutrn dynamic Function(multiply by 5)[multipl5(10)]: ${multipl5(10)}")
+    println()
+
     println("Recursion Function(Factorial 5): ${factorial(5)}")
     println("Tail Recursion Function(Factorial 15): ${factorial2(15)}")
+
+    println("Nested Function: ")
+    val nestFunction = {n:Int -> n * 2}
+    val targetList = arrayOf(1, 2, 3, 4)
+    mathOnList(targetList, nestFunction)
 }
 
 
@@ -300,19 +377,23 @@ fun checkEven(input1:Int):Boolean{
     if(input1 % 2 == 0) return true else return false
 }
 
+
 //Here is an example of a single line function
 //kotlin allows you give the parameter a default value
 //if you dont provide input 1 or input 2 automatically consider as 0
 fun add(input1:Int = 0, input2:Int = 0):Int = input1 + input2
 
+
 //Kotlin allows you dont need the return type when you declaring a single line function
 fun subtract(input1: Int, input2: Int) = input1 - input2
+
 
 //if you dont want the function return anything, like the void type method in java.
 //In Kotlin the return type is Unit.
 fun nation(country:String):Unit{
     println("You are from $country")
 }
+
 
 //Kotlin allows function return 2 values
 //fun funcction_name(Para or not) : Pair<return_type1, return_type2>
@@ -324,6 +405,7 @@ fun return2Value(input1:Int):Pair<Int, Boolean>{
         return Pair(input1, false)
 }
 
+
 //Kotlin also allow you could sent a variable or element of the param into the function
 //so the method treate the para input as an array or list, user could input as much same type para as you need
 //when the method run the function will run through each of the element in the param list
@@ -331,10 +413,24 @@ fun sumOf(vararg nums:Int):Int{
     var sum = 0
 
     //Kotlin has the forEach method too
-    nums.forEach { n -> sum += 0 }
+    nums.forEach { n -> sum += n }
 
     return sum
 }
+
+
+//create a function that will return a dynamically created function
+fun multiply(input1: Int):(Int) -> Int = {n -> input1 * n}
+
+
+//create a function inside a function as a parameter
+//in this way, you care create a function that target on sepecific variable, range, list, array...
+//to do specific job that your customized nestFunction instructs it to do
+fun mathOnList(numList:Array<Int>, nestFunction:(num:Int) -> Int){
+    for(n in numList)
+        println("\tElement: $n ,NestFunction Result: ${nestFunction(n)}" )
+}
+
 
 //Recursion function similar with java recursion function
 fun factorial(input1: Int):Int{
