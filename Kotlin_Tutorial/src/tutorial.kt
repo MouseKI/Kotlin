@@ -212,7 +212,7 @@ fun main(args : Array<String>){
     println(sorted) // [(a, []), (b, [banana]), (c, [cherry, citrus])]
 
 
-    //'map' performs a specific action on every element on the list, range, array, collection... and return a new list
+    //'map' of collection performs a specific action on every element on the list, range, array, collection... and return a new list
     val numList = 1..10
     val multiply5 = numList.map{it * 5}
     print("Map(multiply 5): ")
@@ -320,6 +320,7 @@ fun main(args : Array<String>){
     println("""
         ----------------------------For Loop----------------------------
     """.trimIndent())
+    //KotLin also has while loop, do while loop, they both same with java
     //Kotlin for loop has some similarities with python
 
     for(n in 1..10)
@@ -336,8 +337,50 @@ fun main(args : Array<String>){
     for((i, x) in array.withIndex()){
         println("Index $i : \t Value: $x")
     }
-
     println()
+
+
+    println("""
+        ----------------------------Continue----------------------------
+    """.trimIndent())
+    //Kotlin has label continue and unlabel continue
+    //unlabel continue just same with java and python
+    var n:Int = 0
+    println("Unlabel Continue:")
+    //Kotlin also has while loop and doo while loop, just same with java
+    do{
+        if(n == 3){
+            println("Skip 3")
+            n++
+            continue
+        }
+        println(n)
+        n = n + 1
+    }while(n < 5)
+
+    //Kotlin has inc(), the effect on n same with n++ and ++n
+    //but it will not work inside of the loops
+    println("inc of n:${n.inc()}")
+
+    //Kotlin also has dec(), the effect on n same with n-- and --n
+    //but it will not work inside of the loops
+    println("dec of n:${n.dec()}")
+
+    println("Label Continue:")
+    //label continue
+    //which could also skips current iteration of the nearest enclosing loop and jump to the specific point that has the same label
+    fun main(args: Array<String>) {
+        //jump point label the '@' goes after the label
+        here@ for (i in 1..5) {
+            for (j in 1..4) {
+                if (i == 3 || j == 2)
+                //on the "continue" the '@" goes before the label
+                    continue@here
+                println("i = $i; j = $j")
+            }
+        }
+    }
+
 
     println("""
         ----------------------------Function----------------------------
@@ -399,7 +442,7 @@ fun nation(country:String):Unit{
 //fun funcction_name(Para or not) : Pair<return_type1, return_type2>
 fun return2Value(input1:Int):Pair<Int, Boolean>{
     if(input1 % 2 == 0)
-        //the return should in this form Pair(returnType1, returnType2)
+    //the return should in this form Pair(returnType1, returnType2)
         return Pair(input1, true)
     else
         return Pair(input1, false)
