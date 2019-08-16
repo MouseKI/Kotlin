@@ -172,9 +172,12 @@ fun main(args : Array<String>){
     val oneToTen = 1..10
     print("oneToTen: ")
     for(n in oneToTen){
-        print(n)
-        if(n != 10)
-            print(",")
+        /*Kotlin ternary operator
+         *if(Condition) True_Output else False_Output
+         *Java ternary operator
+         * if(Condition)? True_Output : False_Output
+         */
+        print("" + n + if(n != 10) "," else "")
     }
     println()
     println("Check 4 in oneToTen: ${4 in oneToTen}")
@@ -183,9 +186,7 @@ fun main(args : Array<String>){
     val oneToTen2 = 1.rangeTo(10)
     print("oneToTen2: ")
     for(n in oneToTen2){
-        print(n)
-        if(n != 10)
-            print(",")
+        print("" + n + if(n != 10) "," else "")
     }
     println()
 
@@ -195,9 +196,7 @@ fun main(args : Array<String>){
     val hundredToOne = 100.downTo(1)
     print("hundredToOne: ")
     for(n in hundredToOne){
-        print(n)
-        if(n != 1)
-            print(",")
+        print("" + n + if(n != 1) "," else "")
     }
     println()
 
@@ -208,9 +207,7 @@ fun main(args : Array<String>){
     var stepToThirty = (0..30).step(5)
     print("stepToThirty: ")
     for(n in stepToThirty){
-        print(n)
-        if(n != 30)
-            print(",")
+        print("" + n + if(n != 30) "," else "")
     }
     println()
     println("Check 12 in stepToThirty: ${12 in stepToThirty}")
@@ -221,9 +218,7 @@ fun main(args : Array<String>){
     val alpha = 'A'..'Z'
     print("alpha: ")
     for(n in alpha){
-        print(n)
-        if(n != 'Z')
-            print(",")
+        print("" + n + if(n != 'z') "," else "")
     }
     println()
 
@@ -291,6 +286,9 @@ fun main(args : Array<String>){
 
     println("Return 2 values function(check is 5 even): ${return2Value(5)}")
     println("Sum of range 1 to 5: ${sumOf(1,2,3,4,5)}")
+
+    println("Recursion Function(Factorial 5): ${factorial(5)}")
+    println("Tail Recursion Function(Factorial 15): ${factorial2(15)}")
 }
 
 
@@ -298,10 +296,8 @@ fun main(args : Array<String>){
 //declaring a function is similar with declaring a variable
 //fun funcction_name(Para or not) : return_type
 fun checkEven(input1:Int):Boolean{
-    if(input1 % 2 == 0)
-        return true
-    else
-        return false
+    //if else statement could be in one line
+    if(input1 % 2 == 0) return true else return false
 }
 
 //Here is an example of a single line function
@@ -338,4 +334,30 @@ fun sumOf(vararg nums:Int):Int{
     nums.forEach { n -> sum += 0 }
 
     return sum
+}
+
+//Recursion function similar with java recursion function
+fun factorial(input1: Int):Int{
+    return if (input1 == 1) 1 else input1 * factorial(input1 - 1)
+}
+
+
+/*Kotlin also provide tail recursion function construct
+ *Tail recursion is a generic concept rather than the feature of Kotlin language.
+ *since some language like python does not support recursion
+ *
+ * Difference between  normal recursion and tail recursion
+ *  Normal Recursion:
+ *      it performs all recursive calls first, and calculate the result from return values at last,
+ *      since it doesn't get result until all recursive calls are made.
+ *
+ *  Tail Recursion:
+ *      calculations are performed first, then recursive calls are executed
+ *      (the recursive call passes the result of your current step to the next recursive call).
+ *      This makes the recursive call equivalent to looping, and avoids the risk of stack overflow.
+ * */
+
+//Tail recursion function has 'tailrec' keyword in front of 'fun'
+tailrec fun factorial2(n: Int, run: Int = 1): Long {
+    return if (n == 1) run.toLong() else factorial2(n - 1, run * n)
 }
