@@ -10,6 +10,11 @@ out
 **/target
 target
 
+# ignore the .idea directory
+.idea
+**/.idea
+
+
 # ignore the .vscode directory
 .vscode
 **/.vscode
